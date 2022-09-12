@@ -1,7 +1,8 @@
+import os, csv
 from  src.Num import Num
 from  src.sym import Sym
 from  src.cols import Cols
-from  src.row import Rows
+from  src.row import Row
 
 '''
 Class `Data` is a holder of `rows` and their summaries (in `cols`)
@@ -40,7 +41,7 @@ class Data:
 
 
     
-    def readFromCSV(self, fname: str, func) -> None:
+    def readFromCSV(self, fname: str, funcnm) -> None:
         """
         Read content from CSV file and run a custom function on each row
         @fname: file path with file name
@@ -54,46 +55,67 @@ class Data:
             n = 0
             for row in reader:
                 n = n + 1
-                func(row, n)
+                t ={n : row}
+                funcnm(t)
 
     
     def add(self, xs):
         if self.cols is None:
-            self.cols = Cols(xs)
+            self.cols = Cols(list(xs.values())[0])
         else:
-            self.rows.append(Rows(xs))
-            '''Few more lines, not sure what they mean'''
-    
-    
+            temp_row = Row(xs)
+            self.rows.append(temp_row)
+            todo = self.cols.x + self.cols.y
+            # todo is a list of Sym and Num objects
+            for obj_col in todo:
+                obj_col.add(list(temp_row.cells.values())[0][obj_col.at])
+
+    # def abc(self,a,b):
+    #     return a+b
+
     def stats(self, places = None, showcols = None, func = None) -> dict:
         if places is None:
             places = 2
         if showcols is None:
             showcols = self.cols.y
-        if fun is None:
-            func = 'Mid'
+        if func is None:
+            func = self.div
         t = {}
-        for i in range(len(showcols)):
-            v = func(showcols[i])
-            if type(v) == int:
-                v = self.rnd(v, places)
-            t[col.name] = v
+        print(showcols)
+        '''In Progress...'''
+        # for i in range(len(showcols)):
+        #     #print(type(showcols[i]))
+        #     class_name = type(showcols[i]).__name__
+        #     func_name = class_name + "." + func
+        #     print(func_name)
+        #     #v = eval('func_name(showcols[i])')
+        #     v = eval('math.pi(5,6)')
+        #     print(v)
+        #     if type(v) == int:
+        #         v = self.rnd(v, places)
+        #     t[showcols[i].name] = v
         return t
+    
+
                 
 
 ''' Can remove after testing, just to see the values outputted from the variables'''
 # def showStats():
-#     li = ["Clndrs","Volume","Hp:","Lbs-","Acc+","Model","origin","Mpg+"]
-        
-#     cols = Cols(li)
-
-#     # print(cols.all)
+#     src = '../data/input.csv'
+#     the = {"Seperator":","}
+#     data = Data(the, src)
+    
+#     cols = data.cols
+    
+    
 #     for i in cols.all:
 #         print(i.name)
     
 #     print("-"*100)
 #     for i in cols.x:
 #         print(i.name)
+#         print(i._has)
+#         print(i.at)
 #     # print(cols.x)
 #     # print(cols.y)
 #     print("-"*100)
@@ -102,6 +124,8 @@ class Data:
 #     print("-"*100)
 #     print(cols.names)
 #     print(cols.klass)
+
+#     print(data.stats(func = 'mid'))
 
             
 

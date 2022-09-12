@@ -1,6 +1,6 @@
 import re
-from  src.Num import Num
-from  src.sym import Sym
+from  Num import Num
+from  sym import Sym
 
 '''
 Class `Cols` Summarizes the first row of the dataset
@@ -52,25 +52,25 @@ class Cols:
 
 ''' Can remove after testing, just to see the values outputted from the variables'''
 # def showStats():
-#     li = ["Clndrs","Volume","Hp:","Lbs-","Acc+","Model","origin","Mpg+"]
+    # li = ["Clndrs","Volume","Hp:","Lbs-","Acc+","Model","origin","Mpg+"]
         
-#     cols = Cols(li)
+    # cols = Cols(li)
 
-#     # print(cols.all)
-#     for i in cols.all:
-#         print(i.name)
+    # # print(cols.all)
+    # for i in cols.all:
+        # print(i.name)
     
-#     print("-"*100)
-#     for i in cols.x:
-#         print(i.name)
-#     # print(cols.x)
-#     # print(cols.y)
-#     print("-"*100)
-#     for i in cols.y:
-#         print(i.name)
-#     print("-"*100)
-#     print(cols.names)
-#     print(cols.klass)
+    # print("-"*100)
+    # for i in cols.x:
+        # print(i.name)
+    # # print(cols.x)
+    # # print(cols.y)
+    # print("-"*100)
+    # for i in cols.y:
+        # print(i.name)
+    # print("-"*100)
+    # print(cols.names)
+    # print(cols.klass)
 
             
 
