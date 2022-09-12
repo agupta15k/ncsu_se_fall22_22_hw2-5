@@ -45,7 +45,7 @@ class Data:
         """
         Read content from CSV file and run a custom function on each row
         @fname: file path with file name
-        @func: custom user function
+        @funcnm: custom user function
         """
         sep = self.the['Seperator']
         currentWorkingPath = os.path.dirname(__file__)
@@ -60,13 +60,20 @@ class Data:
 
     
     def add(self, xs):
+        """
+        Add a `row` to `data`. Calls `add()` to  updatie the `cols` with new values.
+        @xs: dict with a single key, value pair. The value holds the entire row as a list 
+        """
+        # Check if cols is none then its the first row and will considered as column headers
         if self.cols is None:
+            # pass the list of column headers to create an object of class Cols
             self.cols = Cols(list(xs.values())[0])
         else:
+            # create an object of class Row and append it to our list `rows`
             temp_row = Row(xs)
             self.rows.append(temp_row)
+            # todo is a list of dependent and independent columns which are objects of class Num or Sym
             todo = self.cols.x + self.cols.y
-            # todo is a list of Sym and Num objects
             for obj_col in todo:
                 obj_col.add(list(temp_row.cells.values())[0][obj_col.at])
 
