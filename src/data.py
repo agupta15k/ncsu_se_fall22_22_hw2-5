@@ -1,5 +1,6 @@
 import os
 import csv
+import math
 from src.Num import Num
 from src.sym import Sym
 from src.cols import Cols
@@ -91,8 +92,8 @@ class Data:
             places = 2
         if showcols is None:
             showcols = self.cols.y
-        if func is None:
-            func = self.div
+        if funcnm is None:
+            funcnm = 'mid'
         t = {}
         print(showcols)
         for i in range(showcols):
