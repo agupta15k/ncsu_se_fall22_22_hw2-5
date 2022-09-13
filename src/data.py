@@ -95,6 +95,7 @@ class Data:
             func = self.div
         t = {}
         print(showcols)
+        for i in range(showcols):
             fun = getattr(showcols[i], funcnm)
             v = fun()
             #print(v)
